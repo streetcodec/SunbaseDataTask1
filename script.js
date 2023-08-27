@@ -5,12 +5,10 @@ const popupName = document.getElementById("popupName");
 const popupPoints = document.getElementById("popupPoints");
 const popupAddress = document.getElementById("popupAddress");
 
-// this is causing a CORS error because the API doesn't allow requests from other domains so we are using jugaad
+// this is causing a CORS error because the API doesn't allow requests from other domains so we are using script2 and dummyData. 
+//This can be used but they have to get access to api.  
 let clients = [];
 let clientData = {};
-// Use CORS Anywhere proxy
-//const corsAnywhereUrl = "https://cors-anywhere.herokuapp.com/";
-//corsAnywhereUrl +
 const apiURL = "https://qa2.sunbasedata.com/sunbase/portal/api/assignment.jsp?cmd=client_data";
 
 // Fetch data from API using the proxy
@@ -20,8 +18,7 @@ async function fetchData() {
     console.log(response);
     
     const data = await response.json();
-    console.log(data);
-    console.log("Amanannn");
+  
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -29,8 +26,7 @@ async function fetchData() {
 }
 // Fetch data from the API
 let result = await fetchData();
-console.log(result);
-console.log("Amanannn");
+
 clients = result.clients;
 clientData = result.data;
 // Function to update the client list based on the selected filter
